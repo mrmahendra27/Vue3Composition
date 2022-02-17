@@ -142,6 +142,7 @@ export default {
   name: "CompanyIndex",
   setup() {
     const { companies, getCompanies, destroyCompany } = useCompanies();
+    onMounted(getCompanies);
 
     const deleteCompany = async (id) => {
       if (!window.confirm("you sure?")) {
@@ -151,7 +152,6 @@ export default {
       await destroyCompany(id);
       await getCompanies();
     };
-    onMounted(getCompanies);
     return {
       companies,
       deleteCompany,

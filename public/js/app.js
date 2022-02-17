@@ -24948,6 +24948,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         getCompanies = _useCompanies.getCompanies,
         destroyCompany = _useCompanies.destroyCompany;
 
+    (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_2__.onMounted)(getCompanies);
+
     var deleteCompany = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(id) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -24982,7 +24984,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
     }();
 
-    (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_2__.onMounted)(getCompanies);
     return {
       companies: companies,
       deleteCompany: deleteCompany
@@ -25696,7 +25697,9 @@ function useCompanies() {
 
             case 4:
               _context3.next = 6;
-              return router.push('companies.index');
+              return router.push({
+                name: 'companies.index'
+              });
 
             case 6:
               _context3.next = 11;
@@ -25737,7 +25740,9 @@ function useCompanies() {
 
             case 5:
               _context4.next = 7;
-              return router.push('companies.index');
+              return router.push({
+                name: 'companies.index'
+              });
 
             case 7:
               _context4.next = 12;

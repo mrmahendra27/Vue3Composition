@@ -23,7 +23,7 @@ export default function useCompanies() {
         errors.value = ''
         try {
             await axios.post('/api/companies', data)
-            await router.push('companies.index')
+            await router.push({name: 'companies.index'})
         } catch (error) {
             if (error.response.status === 422) {
                 errors.value = error.response.data.errors
@@ -36,7 +36,7 @@ export default function useCompanies() {
         errors.value = ''
         try {
             await axios.put('/api/companies/' + id, company.value)
-            await router.push('companies.index')
+            await router.push({name: 'companies.index'})
         } catch (error) {
             if (error.response.status === 422) {
                 errors.value = error.response.data.errors
