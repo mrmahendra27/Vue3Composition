@@ -16,9 +16,10 @@ const routes = [
         component: CompanyCreate
     },
     {
-        path: '/company/update',
+        path: '/company/:id/update',
         name: 'companies.update',
-        component: CompanyUpdate
+        component: CompanyUpdate,
+        props: true
     }
 ]
 

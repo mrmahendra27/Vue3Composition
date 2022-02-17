@@ -7,6 +7,7 @@ use App\Http\Requests\CompanyRequest;
 use App\Http\Resources\CompanyResource;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
 {
@@ -41,7 +42,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        return CompanyResource::collection($company);
+        return new CompanyResource($company);
     }
 
     /**
@@ -51,7 +52,7 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyRequest $request, Company $company)
     {
         $company->update($request->validated());
 

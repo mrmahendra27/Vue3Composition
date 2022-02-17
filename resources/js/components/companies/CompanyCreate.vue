@@ -1,7 +1,11 @@
 <template>
-  <div class="mt-2 mb-6 text-sm text-red-600" v-if="errors !== ''">
-    {{ errors }}
-  </div>
+<div v-if="errors">
+      <div v-for="(v, k) in errors" :key="k" class="text-gray rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0">
+        <p v-for="error in v" :key="error" class="text-sm">
+          {{ error }}
+        </p>
+      </div>
+    </div>
   <div>
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="mt-10 sm:mt-0">
@@ -156,7 +160,7 @@ export default {
       name: '',
       email: '',
       address: '',
-      website: '',
+      website: ''
     });
 
     const { errors, createCompany } = useCompanies();

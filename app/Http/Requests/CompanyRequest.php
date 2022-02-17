@@ -25,7 +25,7 @@ class CompanyRequest extends FormRequest
     {
         return [
             'name' => ['bail', 'required', 'string'],
-            'email' => ['bail', 'required', 'email', 'unique:companies,email,id'],
+            'email' => ['bail', 'required', 'email', 'unique:companies,email,' . $this->id],
             'address' => ['bail', 'nullable', 'string'],
             'website' => ['bail', 'nullable', 'url'],
         ];

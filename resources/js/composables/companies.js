@@ -1,52 +1,50 @@
 import { ref } from 'vue'
 import axios from 'axios'
-import router from '../router';
+import { useRouter } from 'vue-router';
 
 export default function useCompanies() {
     const companies = ref([])
     const company = ref([])
+    const router = useRouter()
 
     const errors = ref('');
-    
-    const getCompanies = async() => {
+
+    const getCompanies = async () => {
         let response = await axios.get('/api/companies')
         companies.value = response.data.data
     }
 
-    const getCompany = async(id) => {
+    const getCompany = async (id) => {
         let response = await axios.get('/api/companies/' + id)
         company.value = response.data.data
     }
 
-    const createCompany = async(data) => {
+    const createCompany = async (data) => {
         errors.value = ''
         try {
-        await axios.post('/api/companies', data)
-        await router.push('companies.index')
+            await axios.post('/api/companies', data)
+            await router.push('companies.index')
         } catch (error) {
-            if(error.response.status === 422) {
-                for(const key in error.response.data.errors){
-                    errors.value = error.response.data.errors[key][0] + ' '
-                }
+            if (error.response.status === 422) {
+                errors.value = error.response.data.errors
             }
         }
     }
 
-    const updateCompany = async(data) => {
+    const updateCompany = async (id) => {
+        console.log(id)
         errors.value = ''
         try {
-        await axios.post('/api/companies/' + id, data)
-        await router.push('companies.index')
+            await axios.put('/api/companies/' + id, company.value)
+            await router.push('companies.index')
         } catch (error) {
-            if(error.response.status === 422) {
-                for( const key in error.response.data.errors){
-                    errors.value += error.response.data.errors[key][0] + ' '
-                }
+            if (error.response.status === 422) {
+                errors.value = error.response.data.errors
             }
         }
     }
 
-    const destroyCompany = async(id) => {
+    const destroyCompany = async (id) => {
         await axios.delete('/api/companies/' + id)
     }
     return {
@@ -54,6 +52,7 @@ export default function useCompanies() {
         company,
         errors,
         getCompanies,
+        getCompany,
         createCompany,
         updateCompany,
         destroyCompany

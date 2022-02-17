@@ -70,13 +70,39 @@
                 <td class="p-2 whitespace-nowrap">
                   <div class="text-lg text-center">{{ company.website }}</div>
                 </td>
-                <td class="p-2 whitespace-nowrap">
-                  <div class="text-lg text-center">
+                <td class="p-2 whitespace-nowrap flex">
+                  <router-link
+                    class="
+                      items-left
+                      px-4
+                      py-2
+                      bg-gray-800
+                      border border-transparent
+                      rounded-md
+                      font-semibold
+                      text-xs text-white
+                      uppercase
+                      tracking-widest
+                      hover:bg-gray-700
+                      active:bg-gray-900
+                      focus:outline-none focus:border-gray-900 focus:ring
+                      ring-gray-300
+                      disabled:opacity-25
+                      transition
+                      ease-in-out
+                      duration-150
+                    "
+                    :to="{
+                      name: 'companies.update',
+                      params: { id: company.id },
+                    }"
+                    >Edit</router-link
+                  >
+                  <div class="text-lg px-2 text-center">
                     <button
                       @click="deleteCompany(company.id)"
                       class="
-                        inline-flex
-                        items-center
+                        items-right
                         px-4
                         py-2
                         bg-gray-800
